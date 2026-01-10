@@ -9,11 +9,17 @@ public static class Arrays
     public static double[] MultiplesOf(double number, int length)
     {
         // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        //1. Create an array of doubles with the size of 'length'
+        double[] results = new double[length];
 
-        return []; // replace this return statement with your own
+        //2. Use a for loop to iterate from 0 to length - 1
+        for (int i = 0; i < length; i++)
+        {
+            //3. In each iteration, calculate the multiple of 'number' by (i + 1) and put it on the array at index i
+            results[i] = number * (i + 1);
+        }
+        //4. Return the array
+        return results;
     }
 
     /// <summary>
@@ -26,8 +32,17 @@ public static class Arrays
     public static void RotateListRight(List<int> data, int amount)
     {
         // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        //1. Get the count of elements in the list
+        var count = data.Count;
+        //2. Create a new list from the biggining to the amout index
+        var bList = new List<int>(data.GetRange(0,amount));
+        //3. Get the remaning elements from the amount index to the end of the List
+        var eList = new List<int>(data.GetRange(amount, count - amount));
+        // 4. Clearing the original List to replace its values
+        data.Clear();
+        // 5.Adding the first elements from the end to the bigginng from the orignal List
+        data.AddRange(eList);
+        // 6. Adding the remaining elements to the end of the new List
+        data.AddRange(bList);
     }
 }
