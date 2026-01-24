@@ -24,7 +24,19 @@
 
     private static int CountDuplicates(int[] data)
     {
-        // Add code here.
+        HashSet<int> unionData = new HashSet<int>();
+        int duplicateCount = 0;
+        foreach (int item in data)
+        {
+            if (unionData.Contains(item))
+            {
+                duplicateCount++;
+            }
+            else
+            {
+                unionData.Add(item);
+            }
+        }
         return 0;
     }
 }
