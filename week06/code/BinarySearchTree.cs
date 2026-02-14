@@ -3,6 +3,7 @@ using System.Collections;
 public class BinarySearchTree : IEnumerable<int>
 {
     private Node? _root;
+    private HashSet<int> _values = new();
 
     /// <summary>
     /// Insert a new node in the BST.
@@ -10,6 +11,7 @@ public class BinarySearchTree : IEnumerable<int>
     public void Insert(int value)
     {
         // Create new node
+
         Node newNode = new(value);
         // If the list is empty, then point both head and tail to the new node.
         if (_root is null)
@@ -19,7 +21,10 @@ public class BinarySearchTree : IEnumerable<int>
         // If the list is not empty, then only head will be affected.
         else
         {
+            if (_values.Contains(value))
+                return;
             _root.Insert(value);
+            _values.Add(value);
         }
     }
 
@@ -81,6 +86,13 @@ public class BinarySearchTree : IEnumerable<int>
     private void TraverseBackward(Node? node, List<int> values)
     {
         // TODO Problem 3
+        if (node is not null)
+        {
+            TraverseBackward(node.Right, values);
+            values.Add(node.Data);
+            TraverseBackward(node.Left, values);
+        }
+        
     }
 
     /// <summary>
